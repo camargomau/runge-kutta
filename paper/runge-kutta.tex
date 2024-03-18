@@ -139,7 +139,7 @@ Para encontrar las soluciones al sistema~(\ref{eq:system-van-der-pol}) se tendr�
 
 Si bien se podría realizar el procedimiento del método RK4 a mano, es más conveniente el desarrollo de un programa que lo realice computacionalmente, ahorrándonos tiempo y esfuerzo. Después de todo, la utilización de los métodos numéricos para la obtención de soluciones a ecuaciones diferenciales ordinarias (y muchas otras aplicaciones) se ha vuelto especialmente viable en las últimas décadas luego de los avances en la velocidad de procesamiento computacional.
 
-El programa fue realizado en Python, un lenguaje de programación popular para este tipo de aplicaciones. La implementación de RK4 en Python es sumamente sencilla y solo se utilizaron los paquetes \textit{numpy} para un manejo más elegante de los cálculos, y \textit{matplotlib} para la graficación de la solución obtenida. El código se encuentra en la sección \ref{sect:python} y también está disponible en el \href{https://github.com/camargomau/runge-kutta}{repositorio de GitHub de este proyecto}.
+El programa fue realizado en Python, un lenguaje de programación popular para este tipo de aplicaciones. La implementación de RK4 en Python es sumamente sencilla y solo se utilizaron los paquetes \textit{numpy} para un manejo más elegante de los cálculos, y \textit{matplotlib} para la graficación de la solución obtenida. El código se encuentra en la sección~\ref{sect:python} y también está disponible en el \href{https://github.com/camargomau/runge-kutta}{repositorio de GitHub de este proyecto}.
 
 El funcionamiento del programa es simple:
 \begin{enumerate}
@@ -156,13 +156,57 @@ Ya que tenemos un programa que realiza los cálculos de forma sencilla, podemos 
 Para un primer ejemplo, utilizaremos:
 \begin{align*}
     \mu &= 1 \\
-    x_{0} &= 1 \\
-    y_{0} &= 0 \\
-    t_{0} &= 0 \\
-    t_{\text{final}} &= 50 \\
-    h &= 0.01 \\
+    x_{0} = 1 &\qquad y_{0} = 0 \\
+    t_{0} = 0 &\qquad t_{\text{final}} = 50 \\
+    h &= 0.01
 \end{align*}
+Introducimos estos datos al programa:
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{../auxiliary/assets/ejemplo1-datos.png}
+	\caption{Introducción de los datos del ejemplo 1 al programa desde PowerShell}
+\end{figure}
+Posteriormente, el programa aproxima la solución a la ecuación de Van der Pol correspondiente (en su forma de sistema de ecuaciones de primer orden) utilizando el método RK4 con la configuración que hemos definido según estos datos y finalmente nos muestra las gráficas correspondientes a la solución encontrada:
+\begin{figure}[H]\label{fig:ej1}
+	\centering
+	\includegraphics[scale=0.5]{../auxiliary/assets/ejemplo1-indiv.png}
+	\includegraphics[scale=0.5]{../auxiliary/assets/ejemplo1-conj.png}
+	\caption{Gráficas de las soluciones halladas correspondientes al ejemplo 1}
+\end{figure}
+Si buscamos en diversas fuentes sobre el oscilador de Van der Pol y las soluciones a su ecuación (como las que están en la sección de referencias), comprobaremos que efectivamente toman la forma de las gráficas que hemos obtenido con el programa. El programa funciona correctamente.
 
+Un análisis del comportamiento de las soluciones a la ecuación de Van der Pol en sí está fuera del alcance de este proyecto, así que enfoquémonos solamente en el análisis del procedimiento numérico. Podemos observar que, efectivamente, se aproximó la solución en el intervalo \(t \in [0, 50]\) con un paso de \(h = 0.01\). El paso es lo suficientemente pequeño como para resultar en una solución que, al menos a primera vista, parece perfectamente suave sin cambios bruscos o «artefactos».
+
+\subsubsection{Ejemplo 2}
+
+Para resaltar la naturaleza numérica de estas soluciones, se reutilizarán todos los datos del ejemplo 1 para obtener otra solución, pero esta vez optando por un tamaño de paso más largo \(h = 0.75\). Con ello, el programa resulta en:
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{../auxiliary/assets/ejemplo2-indiv.png}
+	\includegraphics[scale=0.5]{../auxiliary/assets/ejemplo2-conj.png}
+	\caption{Aplicación de RK4 con los mismos datos del ejemplo 1, pero \(h = 0.75\)}
+\end{figure}
+Observemos que esta aproximación continúa teniendo la misma tendencia que la del ejemplo 1 (la solución es la misma, después de todo), pero, esta vez, como el paso es más largo, se perciben los segmentos de recta individuales que unen los puntos de aproximación obtenidos numéricamente.
+
+Aquí también podemos incluso notar de forma más clara que la gráfica conjunta de la aproximación obtenida anteriormente (figura~\ref{fig:ej1}) se compone de una línea que pasa varias veces por puntos muy cercanos; en el ejemplo 1 parecería que es una sola línea que solo pasa una vez por una cierta vecindad, pero en este segundo ejemplo vemos que en realidad pasa varias ocasiones.
+
+\subsubsection{Ejemplo 3}
+
+Como último ejemplo, se mostrará que el programa también funciona para el problema generado por otros datos. Esta vez, se utilizará:
+\begin{align*}
+    \mu &= 4 \\
+    x_{0} = 1 &\qquad y_{0} = 2.5 \\
+    t_{0} = 10 &\qquad t_{\text{final}} = 30 \\
+    h &= 0.05
+\end{align*}
+La solución aproximada generada por el programa es:
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{../auxiliary/assets/ejemplo3-indiv.png}
+	\includegraphics[scale=0.5]{../auxiliary/assets/ejemplo3-conj.png}
+	\caption{Aplicación de RK4 con los datos correspondientes al ejemplo 3}
+\end{figure}
+Notemos que el programa una vez más logra dar una solución aproximada satisfactoria que corresponde al comportamiento de la solución a la ecuación de Van der Pol.
 
 \subsection{Implementación en Python}\label{sect:python}
 

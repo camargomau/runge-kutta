@@ -56,13 +56,6 @@ def plot_solution():
     plt.show()
 
 # Definición de μ, h y valores iniciales
-# m = 1.0
-# x0 = 1.0
-# y0 = 0.0
-# t0 = 0
-# t_final = 50
-# h = 0.01
-
 m = float(input("• Introduce el valor del parámetro μ: "))
 x0 = float(input("\n• Introduce el valor inicial x_0 para x: "))
 y0 = float(input("• Introduce el valor inicial y_0 para y: "))
