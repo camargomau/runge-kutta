@@ -1,11 +1,11 @@
-\ProvidesPackage{auxiliary/utilities/preamble}
+\ProvidesPackage{../auxiliary/utilities/preamble}
 
 \usepackage[utf8]{inputenc}
 \usepackage[spanish, mexico]{babel}
 \usepackage{import}
 \usepackage[skip=12pt]{parskip}
 
-\usepackage[dvipsnames]{xcolor}
+\usepackage[x11names]{xcolor}
 \usepackage{float}
 \usepackage{graphicx}
 
@@ -26,6 +26,19 @@
 \hypersetup{
     breaklinks=true,
     colorlinks=true,
-    linkcolor=Blue,
-    urlcolor=Blue
+    linkcolor=DeepSkyBlue1,
+    urlcolor=DeepSkyBlue1
+}
+
+\lstdefinestyle{python}{
+    language=Python,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{Coral2},
+    commentstyle=\color{DeepSkyBlue4},
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    breaklines=true,
+    showspaces=false,
+    showstringspaces=false,
 }
