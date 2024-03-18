@@ -139,7 +139,32 @@ Para encontrar las soluciones al sistema~(\ref{eq:system-van-der-pol}) se tendr�
 
 Si bien se podría realizar el procedimiento del método RK4 a mano, es más conveniente el desarrollo de un programa que lo realice computacionalmente, ahorrándonos tiempo y esfuerzo. Después de todo, la utilización de los métodos numéricos para la obtención de soluciones a ecuaciones diferenciales ordinarias (y muchas otras aplicaciones) se ha vuelto especialmente viable en las últimas décadas luego de los avances en la velocidad de procesamiento computacional.
 
-El programa fue realizado en Python, un lenguaje de programación popular para este tipo de aplicaciones. La implementación de RK4 en Python es sumamente sencilla y solo se utilizaron los paquetes \textit{numpy} para un manejo más elegante de los cálculos, y \textit{matplotlib} para la graficación de la solución obtenida.
+El programa fue realizado en Python, un lenguaje de programación popular para este tipo de aplicaciones. La implementación de RK4 en Python es sumamente sencilla y solo se utilizaron los paquetes \textit{numpy} para un manejo más elegante de los cálculos, y \textit{matplotlib} para la graficación de la solución obtenida. El código se encuentra en la sección \ref{sect:python} y también está disponible en el \href{https://github.com/camargomau/runge-kutta}{repositorio de GitHub de este proyecto}.
+
+El funcionamiento del programa es simple:
+\begin{enumerate}
+    \item Se obtienen los datos que el usuario debe definir antes de la aplicación de RK4.
+    \item En base a esos datos, se definen las estructuras necesarias para la aplicación de RK4.
+    \item Una vez se tienen las estructuras, se procede a la aplicación de RK4, iterando a lo largo del conjunto discreto de \(t\).
+    \item Cuando se termina la aplicación del método, se guarda la solución final y luego se representa en dos gráficas: una donde se trazan individualmente \(x\) y \(y\) contra \(t\), y otra donde se traza \(x\) contra \(y\).
+\end{enumerate}
+
+\subsubsection{Ejemplo 1}
+
+Ya que tenemos un programa que realiza los cálculos de forma sencilla, podemos experimentar con los parámetros y demás valores que uno define antes de comenzar la aplicación de RK4.
+
+Para un primer ejemplo, utilizaremos:
+\begin{align*}
+    \mu &= 1 \\
+    x_{0} &= 1 \\
+    y_{0} &= 0 \\
+    t_{0} &= 0 \\
+    t_{\text{final}} &= 50 \\
+    h &= 0.01 \\
+\end{align*}
+
+
+\subsection{Implementación en Python}\label{sect:python}
 
 \begin{lstlisting}[style=python]
 import numpy as np
@@ -200,13 +225,6 @@ def plot_solution():
     plt.show()
 
 # Definicion de mu, h y valores iniciales
-# m = 1.0
-# x0 = 1.0
-# y0 = 0.0
-# t0 = 0
-# t_final = 50
-# h = 0.01
-
 m = float(input("- Introduce el valor del parametro mu: "))
 x0 = float(input("\n- Introduce el valor inicial x_0 para x: "))
 y0 = float(input("- Introduce el valor inicial y_0 para y: "))
